@@ -40,11 +40,11 @@ public class  ReservaController{
 	
 	
 	@GetMapping("/reserva/{dni}")
-	public Reserva reservaXID(@PathVariable(name="dni") String dni) {
+	public Reserva reservaXID(@PathVariable(name="id") int id) {
 		
 		Reserva Reserva_xid= new Reserva();
 		
-		Reserva_xid=reservaServiceImpl.reservaXID(dni);
+		Reserva_xid=reservaServiceImpl.reservaXID(id);
 		
 		System.out.println("Reserva XID: "+Reserva_xid);
 		
@@ -52,12 +52,12 @@ public class  ReservaController{
 	}
 	
 	@PutMapping("/reserva/{dni}")
-	public Reserva actualizarReserva(@PathVariable(name="dni") String dni,@RequestBody Reserva reserva) {
+	public Reserva actualizarReserva(@PathVariable(name="id") int id,@RequestBody Reserva reserva) {
 		
 		Reserva Reserva_seleccionado= new Reserva();
 		Reserva Reserva_actualizado= new Reserva();
 		
-		Reserva_seleccionado= reservaServiceImpl.reservaXID(dni);
+		Reserva_seleccionado= reservaServiceImpl.reservaXID(id);
 		
 		Reserva_seleccionado.setInvestigador(reserva.getInvestigador());
 		Reserva_seleccionado.setEquipo(reserva.getEquipo());
@@ -74,8 +74,8 @@ public class  ReservaController{
 	}
 	
 	@DeleteMapping("/reserva/{dni}")
-	public void eleiminarReserva(@PathVariable(name="dni") String dni) {
-		reservaServiceImpl.eliminarReserva(dni);
+	public void eleiminarReserva(@PathVariable(name="id") int id) {
+		reservaServiceImpl.eliminarReserva(id);
 	}
 
 

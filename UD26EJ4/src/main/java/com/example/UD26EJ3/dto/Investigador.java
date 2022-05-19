@@ -19,10 +19,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="investigadores")//en caso que la tabala sea diferente
 public class Investigador {
 	
+	//pasado de List a string
 	@Id
-	@OneToMany
-	@JoinColumn(name="dni")
-	private List<Reserva> dni;
+	private String dni;
 	
 	
 	@Column(name = "nomapels")
@@ -33,6 +32,9 @@ public class Investigador {
 	@JoinColumn(name = "id_facultad")
 	Facultad facultad;
 
+	@OneToMany
+	@JoinColumn(name = "dni")
+	List<Reserva> listaReservas;
 	
 	
 	public Investigador() {
@@ -40,49 +42,56 @@ public class Investigador {
 	
 	}
 
-	public Investigador(List<Reserva> dni, String nomapels, Facultad facultad) {
+
+	public Investigador(String dni, String nomapels, Facultad facultad, List<Reserva> listaReservas) {
 		super();
 		this.dni = dni;
 		this.nomapels = nomapels;
 		this.facultad = facultad;
+		this.listaReservas = listaReservas;
 	}
 
-	
-	
-	
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Reserva")
-	public List<Reserva> getDni() {
+
+	public String getDni() {
 		return dni;
 	}
 
-	public void setDni(List<Reserva> dni) {
+
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
+
 
 	public String getNomapels() {
 		return nomapels;
 	}
 
+
 	public void setNomapels(String nomapels) {
 		this.nomapels = nomapels;
 	}
+
 
 	public Facultad getFacultad() {
 		return facultad;
 	}
 
+
 	public void setFacultad(Facultad facultad) {
 		this.facultad = facultad;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+	public List<Reserva> getListaReservas() {
+		return listaReservas;
+	}
+
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Reserva")
+	public void setListaReservas(List<Reserva> listaReservas) {
+		this.listaReservas = listaReservas;
+	}
 	
 
 }
