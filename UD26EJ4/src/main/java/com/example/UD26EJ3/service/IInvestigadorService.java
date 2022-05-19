@@ -12,10 +12,10 @@ public interface IInvestigadorService {
 	
 	public Investigador guardarInvestigador(Investigador investigador);	//Guarda un Investigador CREATE
 	
-	public Investigador investigadorXID(String dni); //Leer datos de un Investigador READ
+	public Investigador investigadorXID(int dni); //Leer datos de un Investigador READ
 	
 	public Investigador actualizarInvestigador(Investigador investigador); //Actualiza datos del Investigador UPDATE
 	
-	public void eliminarInvestigador(String dni);// Elimina el Investigador DELETE
+	public void eliminarInvestigador(int dni);// Elimina el Investigador DELETE
 
 }

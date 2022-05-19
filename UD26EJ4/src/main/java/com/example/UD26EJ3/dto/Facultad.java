@@ -21,15 +21,25 @@ public class Facultad {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//busca ultimo valor e incrementa desde id final de db
-	private Long codigo;
+	private int  id;
 	
 	@Column(name = "nombre")
 	private String nombre;
 	
+
 	
 	@OneToMany
-	@JoinColumn(name="codigo")
-	private List<Equipo> equipo;
+	@JoinColumn(name="id") 
+	private List<Investigador> investigadores;
+
+	
+	
+	@OneToMany
+	@JoinColumn(name="id")
+	private List<Equipo> equipos;
+	
+	//referencia investigadores
+	
 
 
 	
@@ -38,22 +48,66 @@ public class Facultad {
 	}
 
 
-	public Facultad(Long codigo, String nombre, List<Equipo> equipo) {
+	
+	
+	
+
+
+
+
+
+
+	
+	
+
+	public Facultad(int id, String nombre, List<Investigador> investigadores, List<Equipo> equipos) {
 		super();
-		this.codigo = codigo;
+		this.id = id;
 		this.nombre = nombre;
-		this.equipo = equipo;
+		this.investigadores = investigadores;
+		this.equipos = equipos;
 	}
 
 
-	public Long getCodigo() {
-		return codigo;
+
+
+
+
+
+
+
+
+
+
+
+
+	public int getId() {
+		return id;
 	}
 
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
+
+
+
+	
+	public List<Investigador> getInvestigador() {
+		return investigadores;
+	}
+
+
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Investigador")
+	public void setInvestigador(List<Investigador> investigador) {
+		this.investigadores = investigador;
+	}
+
 
 
 	public String getNombre() {
@@ -66,25 +120,21 @@ public class Facultad {
 	}
 
 
+	
+	public List<Equipo> getEquipo() {
+		return equipos;
+	}
+
+	
+	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Equipo")
-	public List<Equipo> getEquipo() {
-		return equipo;
-	}
-
-	
-	
-
 
 	public void setEquipo(List<Equipo> equipo) {
-		this.equipo = equipo;
+		this.equipos = equipo;
 	}
 
 
-	@Override
-	public String toString() {
-		return "Facultad [codigo=" + codigo + ", nombre=" + nombre + ", equipo=" + equipo + "]";
-	}
 	
 	
 	

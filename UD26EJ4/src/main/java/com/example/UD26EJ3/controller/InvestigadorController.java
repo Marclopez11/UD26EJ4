@@ -37,20 +37,20 @@ public class  InvestigadorController{
 	}
 	
 	
-	@GetMapping("/investigador/{dni}")
-	public Investigador investigadorXID(@PathVariable(name="dni") String dni) {
+	@GetMapping("/investigador/{id}")
+	public Investigador investigadorXID(@PathVariable(name="id") String dni) {
 		
 		Investigador Investgador_xid= new Investigador();
 		
 		Investgador_xid=investigadorServiceImpl.investigadorXID(dni);
 		
-		System.out.println("Investigador XID: "+Investgador_xid);
+		//System.out.println("Investigador XID: "+Investgador_xid);
 		
 		return Investgador_xid;
 	}
 	
-	@PutMapping("/investigador/{dni}")
-	public Investigador actualizarInvestigador(@PathVariable(name="dni") String dni,@RequestBody Investigador investigador) {
+	@PutMapping("/investigador/{id}")
+	public Investigador actualizarInvestigador(@PathVariable(name="id") String dni,@RequestBody Investigador investigador) {
 		
 		Investigador Investigador_seleccionado= new Investigador();
 		Investigador Investigador_actualizado= new Investigador();
@@ -63,13 +63,13 @@ public class  InvestigadorController{
 		
 		Investigador_actualizado = investigadorServiceImpl.actualizarInvestigador(Investigador_seleccionado);
 		
-		System.out.println("El investigador actualizado es: "+ Investigador_actualizado);
+		//System.out.println("El investigador actualizado es: "+ Investigador_actualizado);
 		
 		return Investigador_actualizado;
 	}
 	
-	@DeleteMapping("/investigador/{dni}")
-	public void eleiminarInvestigador(@PathVariable(name="dni") String dni) {
+	@DeleteMapping("/investigador/{id}")
+	public void eleiminarInvestigador(@PathVariable(name="id") String dni) {
 		investigadorServiceImpl.eliminarInvestigador(dni);
 	}
 

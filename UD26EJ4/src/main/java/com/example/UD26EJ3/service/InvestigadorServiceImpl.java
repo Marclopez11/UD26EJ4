@@ -30,7 +30,7 @@ public class InvestigadorServiceImpl implements IInvestigadorService {
 	}
 
 	@Override
-	public Investigador investigadorXID(String dni) {
+	public Investigador investigadorXID(int dni) {
 		// TODO Auto-generated method stub
 		return iInvestigadorDAO.findById(dni).get();
 	}
@@ -42,7 +42,7 @@ public class InvestigadorServiceImpl implements IInvestigadorService {
 	}
 
 	@Override
-	public void eliminarInvestigador(String dni) {
+	public void eliminarInvestigador(int dni) {
 		iInvestigadorDAO.deleteById(dni);
 		
 	}

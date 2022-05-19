@@ -11,10 +11,10 @@ public interface IEquipoService {
 			
 			public Equipo guardarEquipo(Equipo equipo);	//Guarda un Equipo CREATE
 			
-			public Equipo equipoXID(String numserie); //Leer datos de un Equipo READ
+			public Equipo equipoXID(int numserie); //Leer datos de un Equipo READ
 			
 			public Equipo actualizarEquipo(Equipo equipo); //Actualiza datos del Equipo UPDATE
 			
-			public void eliminarEquipo(String numserie);// Elimina el Equipo DELETE
+			public void eliminarEquipo(int numserie);// Elimina el Equipo DELETE
 
 }

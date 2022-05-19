@@ -28,7 +28,7 @@ public class EquipoServiceImpl implements IEquipoService{
 		return iEquipoDAO.save(equipo);
 	}
 
-	public Equipo equipoXID(String numerserie) {
+	public Equipo equipoXID(int numerserie) {
 		// TODO Auto-generated method stub
 		return iEquipoDAO.findById(numerserie).get();
 	}
@@ -40,7 +40,7 @@ public class EquipoServiceImpl implements IEquipoService{
 	}
 
 	@Override
-	public void eliminarEquipo(String numerserie) {
+	public void eliminarEquipo(int numerserie) {
 		// TODO Auto-generated method stub
 		iEquipoDAO.deleteById(numerserie);
 

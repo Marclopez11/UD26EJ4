@@ -2,7 +2,10 @@ package com.example.UD26EJ3.dto;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,6 +18,9 @@ import javax.persistence.TemporalType;
 public class Reserva {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	@ManyToOne
 	@JoinColumn(name = "dni")
 	Investigador investigador;
@@ -23,9 +29,12 @@ public class Reserva {
 	@JoinColumn(name = "numserie")
 	Equipo equipo;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	
+	@Column(name = "comienzo")//no hace falta si se llama igual
+	//@Temporal(TemporalType.TIMESTAMP)
 	private Date comienzoAt;
 
+	@Column(name = "fin")//no hace falta si se llama igual
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date finAt;
 	
@@ -35,13 +44,42 @@ public class Reserva {
 	}
 
 
-	public Reserva(Investigador investigador, Equipo equipo, Date comienzoAt, Date finAt) {
+
+	
+
+
+	public Reserva(int id, Investigador investigador, Equipo equipo, Date comienzoAt, Date finAt) {
 		super();
+		this.id = id;
 		this.investigador = investigador;
 		this.equipo = equipo;
 		this.comienzoAt = comienzoAt;
 		this.finAt = finAt;
 	}
+	
+	
+
+
+
+
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+
 
 
 	public Investigador getInvestigador() {

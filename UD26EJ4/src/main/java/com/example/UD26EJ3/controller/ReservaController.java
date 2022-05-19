@@ -39,25 +39,25 @@ public class  ReservaController{
 	}
 	
 	
-	@GetMapping("/reserva/{dni}")
-	public Reserva reservaXID(@PathVariable(name="dni") String dni) {
+	@GetMapping("/reserva/{id}")
+	public Reserva reservaXID(@PathVariable(name="id") int id) {
 		
 		Reserva Reserva_xid= new Reserva();
 		
-		Reserva_xid=reservaServiceImpl.reservaXID(dni);
+		Reserva_xid=reservaServiceImpl.reservaXID(id);
 		
-		System.out.println("Reserva XID: "+Reserva_xid);
+		//System.out.println("Reserva XID: "+Reserva_xid);
 		
 		return Reserva_xid;
 	}
 	
-	@PutMapping("/reserva/{dni}")
-	public Reserva actualizarReserva(@PathVariable(name="dni") String dni,@RequestBody Reserva reserva) {
+	@PutMapping("/reserva/{id}")
+	public Reserva actualizarReserva(@PathVariable(name="id") int id,@RequestBody Reserva reserva) {
 		
 		Reserva Reserva_seleccionado= new Reserva();
 		Reserva Reserva_actualizado= new Reserva();
 		
-		Reserva_seleccionado= reservaServiceImpl.reservaXID(dni);
+		Reserva_seleccionado= reservaServiceImpl.reservaXID(id);
 		
 		Reserva_seleccionado.setInvestigador(reserva.getInvestigador());
 		Reserva_seleccionado.setEquipo(reserva.getEquipo());
@@ -68,14 +68,14 @@ public class  ReservaController{
 		
 		Reserva_actualizado = reservaServiceImpl.actualizarReserva(Reserva_seleccionado);
 		
-		System.out.println("La reserva actualizado es: "+ Reserva_actualizado);
+		//System.out.println("La reserva actualizado es: "+ Reserva_actualizado);
 		
 		return Reserva_actualizado;
 	}
 	
-	@DeleteMapping("/reserva/{dni}")
-	public void eleiminarReserva(@PathVariable(name="dni") String dni) {
-		reservaServiceImpl.eliminarReserva(dni);
+	@DeleteMapping("/reserva/{id}")
+	public void eleiminarReserva(@PathVariable(name="id") int id) {
+		reservaServiceImpl.eliminarReserva(id);
 	}
 
 

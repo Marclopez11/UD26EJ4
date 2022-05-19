@@ -26,7 +26,10 @@ public class Equipo {
 
 	
 	@Id
-	private String numserie;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//busca ultimo valor e incrementa desde id final de db
+	private int id;
+	
+
 	
 	@Column(name = "nombre")//no hace falta si se llama igual
 	private String nombre;
@@ -39,7 +42,7 @@ public class Equipo {
 	 
 	 
 	@OneToMany
-    @JoinColumn(name="numserie")
+    @JoinColumn(name="id")
     private List<Reserva> reserva;
 
 
@@ -51,26 +54,35 @@ public class Equipo {
 	}
 
 
-	public Equipo(String numserie, String nombre, Facultad facultad, List<Reserva> reserva) {
+
+	
+
+
+	public Equipo(int id, String nombre, Facultad facultad) {
 		super();
-		this.numserie = numserie;
+		this.id = id;
 		this.nombre = nombre;
 		this.facultad = facultad;
-		this.reserva = reserva;
+	}
+	
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
 
-	public String getNumserie() {
-		return numserie;
-	}
 
 
 
-	public void setNumserie(String numserie) {
-		this.numserie = numserie;
-	}
-
+	
 
 
 	public String getNombre() {

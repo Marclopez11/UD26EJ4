@@ -39,39 +39,41 @@ public class  EquipoController{
 	}
 	
 	
-	@GetMapping("/equipo/{numerserie}")
-	public Equipo equipoXID(@PathVariable(name="numerserie") String numerserie) {
+	@GetMapping("/equipo/{id}")
+	public Equipo equipoXID(@PathVariable(name="id") int id) {
 		
 		Equipo Equipo_xid= new Equipo();
 		
-		Equipo_xid=equipoServiceImpl.equipoXID(numerserie);
+		Equipo_xid=equipoServiceImpl.equipoXID(id);
 		
-		System.out.println("Equipo XID: "+Equipo_xid);
+	//	System.out.println("Equipo XID: "+Equipo_xid);
 		
 		return Equipo_xid;
 	}
 	
-	@PutMapping("/equipos/{numerserie}")
-	public Equipo actualizarEquipo(@PathVariable(name="numerserie") String numerserie,@RequestBody Equipo equipo) {
+	@PutMapping("/equipos/{id}")
+	public Equipo actualizarEquipo(@PathVariable(name="id")int id,@RequestBody Equipo equipo) {
 		
 		Equipo Equipo_seleccionado= new Equipo();
 		Equipo Equipo_actualizado= new Equipo();
 		
-		Equipo_seleccionado= equipoServiceImpl.equipoXID(numerserie);
+		Equipo_seleccionado= equipoServiceImpl.equipoXID(id);
+		
 		
 		Equipo_seleccionado.setNombre(equipo.getNombre());
 		Equipo_seleccionado.setFacultad(equipo.getFacultad());
-		
+
+	
 		Equipo_actualizado = equipoServiceImpl.actualizarEquipo(Equipo_seleccionado);
 		
-		System.out.println("El Curso actualizado es: "+ Equipo_actualizado);
+		//System.out.println("El Curso actualizado es: "+ Equipo_actualizado);
 		
 		return Equipo_actualizado;
 	}
 	
-	@DeleteMapping("/equipos/{numerserie}")
-	public void eleiminarEquipo(@PathVariable(name="numerserie")String numerserie) {
-		equipoServiceImpl.eliminarEquipo(numerserie);
+	@DeleteMapping("/equipos/{id}")
+	public void eleiminarEquipo(@PathVariable(name="id")int id) {
+		equipoServiceImpl.eliminarEquipo(id);
 	}
 
 }

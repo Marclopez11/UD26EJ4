@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,9 +21,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="investigadores")//en caso que la tabala sea diferente
 public class Investigador {
 	
+	//pasado de List a string
 	@Id
-	@Column(name = "dni")
-	private String dni;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//busca ultimo valor e incrementa desde id final de db
+	private int id;
 	
 	
 	@Column(name = "nomapels")
@@ -29,9 +32,12 @@ public class Investigador {
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "id_facultad")
+	@JoinColumn(name = "facultad")
 	Facultad facultad;
 
+	@OneToMany
+	@JoinColumn(name = "id")
+	List<Reserva> listaReservas;
 	
 	
 	public Investigador() {
@@ -41,24 +47,21 @@ public class Investigador {
 
 
 
-	public Investigador(String dni, String nomapels, Facultad facultad) {
+
+	
+
+
+	public Investigador(int id, String nomapels, Facultad facultad, List<Reserva> listaReservas) {
 		super();
-		this.dni = dni;
+		this.id = id;
 		this.nomapels = nomapels;
 		this.facultad = facultad;
+		this.listaReservas = listaReservas;
 	}
 
 
 
-	public String getDni() {
-		return dni;
-	}
 
-
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
 
 
 
@@ -67,11 +70,9 @@ public class Investigador {
 	}
 
 
-
 	public void setNomapels(String nomapels) {
 		this.nomapels = nomapels;
 	}
-
 
 
 	public Facultad getFacultad() {
@@ -79,22 +80,21 @@ public class Investigador {
 	}
 
 
-
 	public void setFacultad(Facultad facultad) {
 		this.facultad = facultad;
 	}
-	
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
+
+	public List<Reserva> getListaReservas() {
+		return listaReservas;
+	}
+
+
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Reserva")
+	public void setListaReservas(List<Reserva> listaReservas) {
+		this.listaReservas = listaReservas;
+	}
 	
 
 }
