@@ -20,9 +20,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Investigador {
 	
 	@Id
-	@OneToMany
-	@JoinColumn(name="dni")
-	private List<Reserva> dni;
+	@Column(name = "dni")
+	private String dni;
 	
 	
 	@Column(name = "nomapels")
@@ -40,42 +39,55 @@ public class Investigador {
 	
 	}
 
-	public Investigador(List<Reserva> dni, String nomapels, Facultad facultad) {
+
+
+	public Investigador(String dni, String nomapels, Facultad facultad) {
 		super();
 		this.dni = dni;
 		this.nomapels = nomapels;
 		this.facultad = facultad;
 	}
 
-	
-	
-	
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Reserva")
-	public List<Reserva> getDni() {
+
+
+	public String getDni() {
 		return dni;
 	}
 
-	public void setDni(List<Reserva> dni) {
+
+
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
+
+
 
 	public String getNomapels() {
 		return nomapels;
 	}
 
+
+
 	public void setNomapels(String nomapels) {
 		this.nomapels = nomapels;
 	}
+
+
 
 	public Facultad getFacultad() {
 		return facultad;
 	}
 
+
+
 	public void setFacultad(Facultad facultad) {
 		this.facultad = facultad;
 	}
 	
+	
+	
+	
+
 	
 	
 	
