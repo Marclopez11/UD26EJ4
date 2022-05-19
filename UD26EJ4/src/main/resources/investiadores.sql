@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS investigadores;
-CREATE DATABASE investigadores;
-USE investigadores;
+DROP DATABASE IF EXISTS investigadores_marc;
+CREATE DATABASE investigadores_marc;
+USE investigadores_marc;
 
 
 DROP TABLE IF EXISTS facultad;
@@ -31,8 +31,8 @@ ON DELETE CASCADE ON UPDATE CASCADE
 
 
 DROP TABLE IF EXISTS reserva;
-CREATE TABLE reserva(
-dni varchar(8) primary key,
+CREATE TABLE reserva(id INT AUTO_INCREMENT primary key,
+dni varchar(8),
 numserie char(4),
 comienzo datetime,
 fin datetime,

@@ -29,9 +29,9 @@ public class ReservaServiceImpl implements IReservaService{
 	}
 
 	@Override
-	public Reserva reservaXID(String dni) {
+	public Reserva reservaXID(int id) {
 		// TODO Auto-generated method stub
-		return iReservaDAO.findById(dni).get();
+		return iReservaDAO.findById(id).get();
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class ReservaServiceImpl implements IReservaService{
 	}
 
 	@Override
-	public void eliminarReserva(String dni) {
-		iReservaDAO.deleteById(dni);
+	public void eliminarReserva(int id) {
+		iReservaDAO.deleteById(id);
 		
 	}
 

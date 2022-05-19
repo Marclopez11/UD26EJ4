@@ -13,10 +13,10 @@ public interface IReservaService {
 	
 	public Reserva guardarReserva(Reserva reserva);	//Guarda un Reserva CREATE
 	
-	public Reserva reservaXID(String dni); //Leer datos de un Reserva READ
+	public Reserva reservaXID(int id); //Leer datos de un Reserva READ
 	
 	public Reserva actualizarReserva(Reserva reserva); //Actualiza datos del Reserva UPDATE
 	
-	public void eliminarReserva(String id);// Elimina el Reserva DELETE
+	public void eliminarReserva(int id);// Elimina el Reserva DELETE
 
 }
